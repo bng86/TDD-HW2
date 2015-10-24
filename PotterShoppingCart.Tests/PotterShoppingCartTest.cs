@@ -80,7 +80,7 @@ namespace PotterShoppingCart.Tests
 
     public class Book
     {
-        public int Price
+        public double Price
         {
             get { return 100; }
         }
