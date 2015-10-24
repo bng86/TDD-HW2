@@ -155,7 +155,27 @@ namespace PotterShoppingCart.Tests
         [TestMethod]
         public void GetPrice_第一集買了一本_第二三集各買了兩本_價格應為100_乘_3_乘_0_點_9_加_100_乘_2_乘_0_點_95_等於_460()
         {
-            Assert.Fail();
+            //arrange
+            var books = new List<Book>
+            {
+                new Book{ Name = "第一集", Price = 100 },
+                new Book{ Name = "第二集", Price = 100 },
+                new Book{ Name = "第二集", Price = 100 },
+                new Book{ Name = "第三集", Price = 100 },
+                new Book{ Name = "第三集", Price = 100 }
+            };
+
+            var target = new ShoppingCart();
+            target.SetBooks(books);
+
+            var expected = 460;
+
+            //act
+            var actual = target.GetPrice();
+
+            //assert
+
+            Assert.AreEqual(expected, actual);
         }
     }
 
