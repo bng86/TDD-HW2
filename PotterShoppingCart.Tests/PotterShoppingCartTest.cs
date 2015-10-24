@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace PotterShoppingCart.Tests
@@ -129,7 +130,26 @@ namespace PotterShoppingCart.Tests
         [TestMethod]
         public void GetPrice_一二集各買了一本_第三集買了兩本_價格應為100_乘_3_乘_0_點_9_加_100_等於_370()
         {
-            Assert.Fail();
+            //arrange
+            var books = new List<Book>
+            {
+                new Book{ Name = "第一集", Price = 100 },
+                new Book{ Name = "第二集", Price = 100 },
+                new Book{ Name = "第三集", Price = 100 },
+                new Book{ Name = "第三集", Price = 100 }
+            };
+
+            var target = new ShoppingCart();
+            target.SetBooks(books);
+
+            var expected = 370;
+
+            //act
+            var actual = target.GetPrice();
+
+            //assert
+
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -139,10 +159,5 @@ namespace PotterShoppingCart.Tests
         }
     }
 
-    public class Book
-    {
-        public double Price { get; set; }
-
-        public string Name { get; set; }
-    }
+    
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PotterShoppingCart.Tests
@@ -19,7 +20,7 @@ namespace PotterShoppingCart.Tests
 
             while (books.Count > 0)
             {
-                var combination = books.Distinct().ToList();
+                var combination = books.Distinct(new Bookcomparer()).ToList();
                 price += GetPriceByDiscountRule(combination);
                 foreach (var book in combination)
                 {
@@ -55,6 +56,38 @@ namespace PotterShoppingCart.Tests
             }
 
             return price;
+        }
+    }
+
+    public class Book
+    {
+        public double Price { get; set; }
+
+        public string Name { get; set; }
+    }
+
+    public class Bookcomparer : IEqualityComparer<Book>
+    {
+
+        public bool Equals(Book x, Book y)
+        {
+            if (ReferenceEquals(x, y)) return true;
+
+            if (ReferenceEquals(x, null) || ReferenceEquals(y, null))
+                return false;
+
+            return x.Name == y.Name;
+        }
+
+        public int GetHashCode(Book book)
+        {
+            if (ReferenceEquals(book, null)) return 0;
+
+            int hashBookName = book.Name == null ? 0 : book.Name.GetHashCode();
+
+            int hashBookPrice = book.Price.GetHashCode();
+
+            return hashBookName ^ hashBookPrice;
         }
     }
 }
