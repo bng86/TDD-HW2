@@ -20,7 +20,7 @@ namespace PotterShoppingCart.Tests
 
             while (books.Count > 0)
             {
-                var combination = books.Distinct(new Bookcomparer()).ToList();
+                var combination = books.Distinct(new BookComparer()).ToList();
                 price += GetPriceByDiscountRule(combination);
                 foreach (var book in combination)
                 {
@@ -66,7 +66,7 @@ namespace PotterShoppingCart.Tests
         public string Name { get; set; }
     }
 
-    public class Bookcomparer : IEqualityComparer<Book>
+    public class BookComparer : IEqualityComparer<Book>
     {
 
         public bool Equals(Book x, Book y)
