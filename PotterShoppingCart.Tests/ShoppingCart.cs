@@ -5,7 +5,7 @@ namespace PotterShoppingCart.Tests
 {
     public class ShoppingCart
     {
-        private List<Book> _books; 
+        private List<Book> _books;
 
         public void SetBooks(List<Book> books)
         {
@@ -14,13 +14,26 @@ namespace PotterShoppingCart.Tests
 
         public double GetPrice()
         {
-            return GetPriceByDiscountRule();
+            double price = 0;
+            var books = _books;
+
+            while (books.Count > 0)
+            {
+                var combination = books.Distinct().ToList();
+                price += GetPriceByDiscountRule(combination);
+                foreach (var book in combination)
+                {
+                    books.Remove(book);
+                }
+            }
+
+            return price;
         }
 
-        private double GetPriceByDiscountRule()
+        private double GetPriceByDiscountRule(List<Book> books)
         {
-            var price = _books.Sum(x => x.Price);
-            var booksAmount = _books.Count;
+            var price = books.Sum(x => x.Price);
+            var booksAmount = books.Count;
 
             switch (booksAmount)
             {
