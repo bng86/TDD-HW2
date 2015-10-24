@@ -43,6 +43,15 @@ namespace PotterShoppingCart.Tests
                 case 2:
                     price *= 0.95;
                     break;
+                case 3:
+                    price *= 0.9;
+                    break;
+                case 4:
+                    price *= 0.8;
+                    break;
+                case 5:
+                    price *= 0.75;
+                    break;
             }
 
             return price;
