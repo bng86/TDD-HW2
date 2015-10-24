@@ -9,6 +9,11 @@ namespace PotterShoppingCart.Tests
         [TestMethod]
         public void GetPrice_第一集買了一本_其他都沒買_價格應為100_乘_1_等於_100元()
         {
+            //arrange
+
+            //act
+
+            //assert
         }
 
         [TestMethod]
@@ -40,5 +45,15 @@ namespace PotterShoppingCart.Tests
         public void GetPrice_第一集買了一本_第二三集各買了兩本_價格應為100_乘_3_乘_0_點_9_加_100_乘_2_乘_0_點_95_等於_460()
         {
         }
+    }
+
+    public class Book
+    {
+        public int Price
+        {
+            get { return 100; }
+        }
+
+        public string Name { get; set; }
     }
 }
