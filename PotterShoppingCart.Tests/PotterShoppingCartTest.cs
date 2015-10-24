@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace PotterShoppingCart.Tests
@@ -10,10 +11,22 @@ namespace PotterShoppingCart.Tests
         public void GetPrice_第一集買了一本_其他都沒買_價格應為100_乘_1_等於_100元()
         {
             //arrange
+            var books = new List<Book>
+            {
+                new Book{ Name = "第一集" }
+            };
+
+            var target = new ShoppingCart();
+            target.SetBooks(books);
+
+            var expected = 100;
 
             //act
+            var actual = target.GetPrice();
 
             //assert
+
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
